@@ -1,0 +1,28 @@
+---
+title: "HIST 1354 Exercise"
+output: html_notebook
+---
+
+```{r}
+data <- read.csv("historical_trade_data.csv")
+```
+
+```{r}
+head(data)
+str(data)
+```
+
+```{r}
+data <- data[data$Exports > 200000, ]
+```
+
+```{r}
+data$TradeBalance <- data$Exports - data$Imports
+```
+
+```{r}
+library(ggplot2)
+ggplot(data=data, aes(x=Year, y=TradeBalance)) +
+  geom_line()+
+  geom_point()
+```
